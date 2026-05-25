@@ -1,0 +1,31 @@
+name: Use Reusable Workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  api-gateway:
+    uses: ./.github/workflows/reusable-docker-build.yml
+    with:
+      service: api-gateway
+
+  user-service:
+    uses: ./.github/workflows/reusable-docker-build.yml
+    with:
+      service: user-service
+
+  product-service:
+    uses: ./.github/workflows/reusable-docker-build.yml
+    with:
+      service: product-service
+
+  order-service:
+    uses: ./.github/workflows/reusable-docker-build.yml
+    with:
+      service: order-service

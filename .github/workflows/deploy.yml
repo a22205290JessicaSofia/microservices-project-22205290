@@ -1,0 +1,30 @@
+name: Environment Protected Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  staging:
+    name: Deploy to staging
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Simulate staging deployment
+        run: echo "Deploying to staging environment"
+
+  production:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    environment: production
+    needs: staging
+
+    steps:
+      - name: Simulate production deployment
+        run: echo "Deploying to production environment"

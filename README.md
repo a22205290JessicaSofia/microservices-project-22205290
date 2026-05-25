@@ -625,3 +625,35 @@ This project is for educational purposes.
 - [Spring Data JPA Documentation](https://spring.io/projects/spring-data-jpa)
 - [Microservices Patterns](https://microservices.io/patterns/)
 - [Course Materials](Aulas/README.md)
+
+
+## GitHub Actions and CI/CD
+
+This project includes several GitHub Actions workflows to automate validation, build, security scanning, Docker image generation, Terraform validation and deployment simulation.
+
+### Workflows
+
+- `main.yml`: validates the repository structure.
+- `ci.yml`: builds the Java microservices using Maven and Java 21.
+- `image.yml`: builds Docker images for the microservices.
+- `security-scan.yml`: runs a security scan using Trivy.
+- `release.yml`: creates a release artifact.
+- `terraform.yml`: runs Terraform format, init, validate and plan.
+- `deploy.yml`: simulates deployment to staging and production environments.
+- `reusable-docker-build.yml`: reusable workflow for Docker image builds.
+- `use-reusable.yml`: calls the reusable Docker workflow for each service.
+- `aws-oidc.yml`: demonstrates AWS authentication using GitHub OIDC.
+
+### Services included in the matrix builds
+
+- `api-gateway`
+- `user-service`
+- `product-service`
+- `order-service`
+
+### Required Secrets
+
+The following GitHub secret is required only for AWS OIDC execution:
+
+```txt
+AWS_ROLE_TO_ASSUME
